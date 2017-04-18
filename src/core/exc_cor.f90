@@ -1,4 +1,4 @@
-subroutine core_exc_cor(xc, ispin, cval, nx, ny, nz, dv, rho, rho_s, tau, rj, grho, rlrho, rho_nlcc, vxc, exc)
+subroutine core_exc_cor(xc, ispin, cval, nx, ny, nz, dv, rho, rho_s, tau, rj, grho, rlrho, rho_nlcc, vxc, vxc_s, exc, tot_exc)
   implicit none
   character(20), intent(in) :: xc
   integer, intent(in) :: ispin ! ispin=0(nonmag) =1(mag)
@@ -80,23 +80,7 @@ contains
   End Subroutine core_exc_cor_pz
 
   
-  
-  subroutine core_exc_cor_pz()
-    implicit none
-    rho_s=rho*0.5d0
-!    if(flag_nlcc)rho_s = rho_s + 0.5d0*rho_nlcc
-  !!$omp parallel do private(i,trho,rs,V_xc,E_xc,rssq,rsln)
-    do i=1,NL
-      trho=2*rho_s(i)
-      call PZxc(trho,e_xc,de_xc_drho)
-      exc(i)=e_xc*trho
-      vxc(i)=e_xc+trho*de_xc_drho
-    enddo
-    
-    
-  end subroutine core_exc_cor_pz
-  
-  
+
   
   
   
@@ -105,23 +89,69 @@ contains
   
 
   subroutine core_exc_cor_pz_spin()
-    
+    implicit none
+    return 
   end subroutine core_exc_cor_pz_spin
 
   subroutine core_exc_cor_pbe()
-    
+    implicit none
+    return 
   end subroutine core_exc_cor_pbe
   
   subroutine core_exc_cor_lda()
-    
+    implicit none
+    return 
   end subroutine core_exc_cor_lda
   
   subroutine core_exc_cor_tbmbj()
-    
+    implicit none
+    return 
   end subroutine core_exc_cor_tbmbj
   
   subroutine core_exc_cor_tpss()
-    
+    implicit none
+    return 
   end subroutine core_exc_cor_tpss
   
 end subroutine
+
+
+
+program test
+  implicit none
+  character(20):: xc
+  integer:: ispin ! ispin=0(nonmag) =1(mag)
+  real(8):: cval
+  integer, parameter :: nx=1, ny=1, nz=1
+  real(8):: dv=0.1
+  real(8):: rho(nx, ny, nz)
+  real(8):: rho_s(nx, ny, nz, 2)
+  real(8):: tau(nx, ny, nz)
+  real(8):: rj(nx, ny, nz, 3)
+  real(8):: grho(nx, ny, nz, 3)
+  real(8):: rlrho(nx, ny, nz)
+  real(8):: rho_nlcc(nx, ny, nz)
+  real(8):: vxc(nx, ny, nz) ! lda
+  real(8):: vxc_s(nx, ny, nz, 2) !lsda
+  real(8):: exc(nx, ny, nz)
+  real(8):: tot_exc ! sum(exc)
+  
+  integer :: i
+  
+  do i = 1, 12
+    
+  
+  xc = "pz"
+  ispin = 0
+  cval = 0.0
+  rho = i * 0.01
+  
+  call core_exc_cor(xc, ispin, cval, nx, ny, nz, dv, rho, rho_s, tau, rj, grho, rlrho, rho_nlcc, vxc, vxc_s, exc, tot_exc)
+  
+  !write(*,*) vxc
+  write(*,*) rho(1,1,1),vxc(1,1,1),exc(1,1,1)
+  !write(*,*) tot_exc
+end do
+  stop 
+  
+end program test
