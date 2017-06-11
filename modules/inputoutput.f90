@@ -393,7 +393,7 @@ contains
     fsset_option  = 'n'
     nfsset_start  = 75
     nfsset_every  = 25
-    nscf          = 300
+    nscf          = 0
     ngeometry_opt = 1
     subspace_diagonalization = 'y'
     cmixing       = 'broyden'
