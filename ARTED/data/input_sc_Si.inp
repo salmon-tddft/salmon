@@ -11,8 +11,8 @@
   al = 10.26d0,10.26d0,10.26d0
   isym = 8 
   crystal_structure = 'diamond'
-  nstate = 32
-  nelec = 32
+  nstate(1) = 32
+  nelec(1) = 32
   nelem = 1
   natom = 8
 /

@@ -170,7 +170,10 @@ Default is <code>0</code>.
 </dd>
 
 <dt>ispin; <code>Integer</code></dt>
-<dd>spin??
+<dd>Variable for classification of closed shell systems and open shell systems. 
+<code>0</code> is for closed shell systems, and 
+<code>1</code> is for open shell systems.
+Default is <code>0</code>.
 </dd>
 
 <dt>al(3); <code>Real(8)</code></dt>
