@@ -355,8 +355,8 @@ contains
     al                 = 0d0
     isym               = 1
     crystal_structure  = 'none'
-    nstate             = 0
-    nelec              = 0
+    nstate             = (/0,0/)
+    nelec              = (/0,0/)
     temperature        = -1d0
     nelem              = 0
     natom              = 0
@@ -868,8 +868,10 @@ contains
       print '("#",4X,A,"=",ES12.5)', 'al(3)', al(3)
       print '("#",4X,A,"=",I1)', 'isym', isym
       print '("#",4X,A,"=",A)', 'crystal_structure', crystal_structure
-      print '("#",4X,A,"=",I4)', 'nstate', nstate
-      print '("#",4X,A,"=",I4)', 'nelec', nelec
+      print '("#",4X,A,"=",I4)', 'nstate(1)', nstate(1)
+      print '("#",4X,A,"=",I4)', 'nstate(2)', nstate(2)
+      print '("#",4X,A,"=",I4)', 'nelec(1)', nelec(1)
+      print '("#",4X,A,"=",I4)', 'nelec(2)', nelec(2)
       print '("#",4X,A,"=",ES12.5)', 'temperature', temperature
       print '("#",4X,A,"=",I4)', 'nelem', nelem
       print '("#",4X,A,"=",I4)', 'natom', natom

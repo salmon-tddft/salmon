@@ -171,7 +171,7 @@ subroutine main
     call sp_energy_omp
     call current_GS
     Eall_GS(iter)=Eall
-    esp_var_ave(iter)=sum(esp_var(:,:))/(NK*Nelec/2)
+    esp_var_ave(iter)=sum(esp_var(:,:))/(NK*Nelec(1)/2)
     esp_var_max(iter)=maxval(esp_var(:,:))
     dns_diff(iter)=sqrt(sum((rho_out(:,iter)-rho_in(:,iter))**2))*Hxyz
 
@@ -953,10 +953,10 @@ Subroutine Read_data
   allocate(rho_l(NL),rho_tmp1(NL),rho_tmp2(NL)) !sym
 
   if (comm_is_root()) then
-    write(*,*) 'NB,Nelec=',NB,Nelec
+    write(*,*) 'NB,Nelec=',NB,Nelec(1)
   endif
   if( kbTev < 0d0 )then ! sato
-    NBoccmax=Nelec/2
+    NBoccmax=Nelec(1)/2
   else 
     NBoccmax=NB
   end if

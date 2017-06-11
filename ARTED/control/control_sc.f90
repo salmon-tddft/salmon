@@ -167,7 +167,7 @@ subroutine main
     call sp_energy_omp
     call current_GS
     Eall_GS(iter)=Eall
-    esp_var_ave(iter)=sum(esp_var(:,:))/(NK*Nelec/2)
+    esp_var_ave(iter)=sum(esp_var(:,:))/(NK*Nelec(1)/2)
     esp_var_max(iter)=maxval(esp_var(:,:))
     dns_diff(iter)=sqrt(sum((rho_out(:,iter)-rho_in(:,iter))**2))*Hxyz
 
@@ -472,7 +472,7 @@ subroutine main
         enddo
         write(408,'(1x,3e16.6E3)') iter*dt,sum(ovlp_occ(NBoccmax+1:NB,:)),sum(occ)-sum(ovlp_occ(1:NBoccmax,:))
         write(*,*) 'number of excited electron',sum(ovlp_occ(NBoccmax+1:NB,:)),sum(occ)-sum(ovlp_occ(1:NBoccmax,:))
-        write(*,*) 'var_tot,var_max=',sum(esp_var(:,:))/(NK*Nelec/2),maxval(esp_var(:,:)) 
+        write(*,*) 'var_tot,var_max=',sum(esp_var(:,:))/(NK*Nelec(1)/2),maxval(esp_var(:,:)) 
       end if
     end if
 
@@ -826,10 +826,10 @@ Subroutine Read_data
   allocate(rho_l(NL),rho_tmp1(NL),rho_tmp2(NL)) !sym
 
   if (comm_is_root()) then
-    write(*,*) 'NB,Nelec=',NB,Nelec
+    write(*,*) 'NB,Nelec=',NB,Nelec(1)
   endif
   if( kbTev < 0d0 )then ! sato
-    NBoccmax=Nelec/2
+    NBoccmax=Nelec(1)/2
   else 
     NBoccmax=NB
   end if

@@ -57,7 +57,7 @@ Subroutine write_GS_data
     end do
     write(403,*) '#---------------------------------------------------------'
     write(403,*) '#GS information-------------------------------------------'
-    write(403,*) '#NB,Nelec=',NB,Nelec
+    write(403,*) '#NB,Nelec=',NB,Nelec(1)
     write(403,*) '#Eall =',Eall
     write(403,*) '#dns_diff(iter = Nscf)',dns_diff(Nscf)
     write(403,*) '#esp_var_ave(iter = Nscf)',esp_var_ave(Nscf)
