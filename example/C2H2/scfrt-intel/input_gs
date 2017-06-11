@@ -22,7 +22,8 @@
 &system
   iperiodic = 0
   al = 16d0, 16d0, 16d0
-  nstate = 5
+  nstate(1) = 5
+  nelec(1) = 10
   nelem = 2
   natom = 4
 /
@@ -48,16 +49,9 @@
   nscf = 1000
 /
 
-
-
 &hartree
- meo = 3
- num_pole_xyz = 2,2,2 
-/
-
-&group_fundamental
-  MST(1)=5
-  ifMST(1)=5
+  meo = 3
+  num_pole_xyz = 2,2,2 
 /
 
 &atomic_coor

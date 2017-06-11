@@ -52,8 +52,8 @@ Subroutine Fermi_Dirac_distribution
     call comm_summation(st,s,proc_group(2))
     elec_num=s
 
-    if(abs(elec_num-dble(Nelec)) <= 1d-6)exit
-    if(elec_num-dble(Nelec) > 0d0)then
+    if(abs(elec_num-dble(Nelec(1))) <= 1d-6)exit
+    if(elec_num-dble(Nelec(1)) > 0d0)then
       chem_max=chemical_potential
       chemical_potential=0.5d0*(chem_max+chem_min)
     else
@@ -65,7 +65,7 @@ Subroutine Fermi_Dirac_distribution
   end do
 
   call comm_summation(occ_l,occ,NB*NK,proc_group(2))
-  st=sum(occ_l(Nelec/2+1:NB,NK_s:NK_e))
+  st=sum(occ_l(Nelec(1)/2+1:NB,NK_s:NK_e))
   call comm_summation(st,s,proc_group(2))
 
   timer2=get_wtime()

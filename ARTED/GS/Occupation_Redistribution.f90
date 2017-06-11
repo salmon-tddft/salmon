@@ -131,7 +131,7 @@ Subroutine Occupation_Redistribution
   end do
   NBoccmax=maxval(NBocc(:))
   if (comm_is_root()) then
-    if (2*nint(sum(NBocc(:)*wk(:)))/=Nelec*NKxyz) call err_finalize('NBocc(ik) are inconsistent')
+    if (2*nint(sum(NBocc(:)*wk(:)))/=Nelec(1)*NKxyz) call err_finalize('NBocc(ik) are inconsistent')
     write(*,*) 'NBoccmax became ',NBoccmax
     write(*,*) 'Ne_tot =',sum(occ)
   end if

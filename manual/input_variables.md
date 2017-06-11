@@ -164,7 +164,7 @@ Default is <code>0</code>.
 
 <dt>iperiodic; <code>Integer</code></dt>
 <dd>Dimension for periodic boundary condition.
-<code>0</code> is for solated systems, and 
+<code>0</code> is for isolated systems, and 
 <code>3</code> is for solids.
 Default is <code>0</code>.
 </dd>
@@ -189,12 +189,14 @@ Default is <code>0</code>.
 Default is <code>'none'</code>.
 </dd>
 
-<dt>nstate; <code>Integer</code></dt>
-<dd>Number of states/bands.
+<dt>nstate(2); <code>Integer</code></dt>
+<dd>Number of states/bands for up-spin and down-spin.
 </dd>
 
-<dt>nelec; <code>Integer</code></dt>
+<dt>nelec(2); <code>Integer</code></dt>
 <dd>Number of valence electrons.
+When <code>ispin</code> is <code>0</code>, <code>nelec(1)</code> is total number of valence electron and <code>nelec(2)</code> is ignored.
+When <code>ispin</code> is <code>1</code>, <code>nelec(1)</code>/<code>nelec(2)</code> is number of valence electron for up-spin/down-spin.
 </dd>
 
 <dt>temperature; <code>Real(8)</code></dt>

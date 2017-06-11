@@ -45,7 +45,7 @@ contains
 !    cval = cval
     Sym = isym
 !    crystal_structure = crystal_structure
-    NB = nstate
+    NB = nstate(1)
 !    Nelec = nelec
 !    ext_field ! this variable is removed
 !    MD_option   ! this variable is replaced by use_ehrenfest_md

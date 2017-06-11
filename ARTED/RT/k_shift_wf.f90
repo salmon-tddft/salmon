@@ -117,7 +117,7 @@ Subroutine k_shift_wf_last(atomic_position_update_switch,iter_GS_max,zu)
     end do
 
     write(*,*) 'number of excited electron',sum(ovlp_occ(NBoccmax+1:NB,:)),sum(occ)-sum(ovlp_occ(1:NBoccmax,:))
-    write(*,*) 'var_tot,var_max=',sum(esp_var(:,:))/(NK*Nelec/2),maxval(esp_var(:,:)) 
+    write(*,*) 'var_tot,var_max=',sum(esp_var(:,:))/(NK*Nelec(1)/2),maxval(esp_var(:,:)) 
 
   end if
 
