@@ -3,7 +3,6 @@ set(TARGET_NAME  core)
 ### Build target
 set(SOURCES
     exc_cor.f90
-    matrix_inverse.f90
 )
 
 add_library(${TARGET_NAME} STATIC ${SOURCES})
