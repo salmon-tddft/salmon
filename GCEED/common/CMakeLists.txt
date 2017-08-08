@@ -19,6 +19,8 @@ set(SOURCES
     calcVpsl.f90
     check_cep.f90
     check_corrkob.f90
+    check_mg.f90
+    check_ng.f90
     check_numcpu.f90
     conv_core_exc_cor.f90
     conv_p0.f90
@@ -54,4 +56,5 @@ set(SOURCES
     ylm.f90
     )
 
-add_library(${COMMON_LIB} ${SOURCES})
+add_library(${GCEED_COMMON_LIB} ${SOURCES})
+add_dependencies(${GCEED_COMMON_LIB} ${SALMON_MODULE_LIB} ${GCEED_MODULE_LIB})

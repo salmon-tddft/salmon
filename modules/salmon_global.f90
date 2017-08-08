@@ -49,6 +49,7 @@ module salmon_global
   real(8)        :: time_shutdown
   character(256) :: sysname
   character(256) :: directory
+  character(256) :: dump_filename
                  
 !! &units
   character(16)  :: unit_time
@@ -173,6 +174,12 @@ module salmon_global
   real(8)        :: de
   character(1)   :: out_psi
   character(1)   :: out_dos
+  real(8)        :: out_dos_start
+  real(8)        :: out_dos_end
+  integer        :: iout_dos_nenergy
+  real(8)        :: out_dos_smearing
+  character(16)  :: out_dos_method
+  character(1)   :: out_dos_fshift
   character(1)   :: out_pdos
   character(1)   :: out_dns
   character(1)   :: out_elf
@@ -184,6 +191,7 @@ module salmon_global
   integer        :: out_estatic_rt_step
   character(16)  :: format3d
   integer        :: numfiles_out_3d
+  character(1)   :: timer_process
 
 !! &hartree
   integer        :: meo
@@ -192,6 +200,57 @@ module salmon_global
 !! &ewald
   integer        :: newald
   real(8)        :: aewald
+
+!! &group_fundamental
+  integer        :: iditerybcg
+  integer        :: iditer_nosubspace_diag
+  integer        :: ntmg
+  integer        :: idisnum(2)
+  integer        :: iwrite_projection
+  integer        :: itwproj
+  integer        :: iwrite_projnum
+  integer        :: itcalc_ene
+
+!! &group_parallel
+  integer        :: isequential
+  integer        :: imesh_s_all
+  integer        :: iflag_comm_rho
+
+!! &group_hartree
+  real(8)        :: hconv
+  integer        :: lmax_meo
+
+!! &group_file
+  integer        :: ic
+  integer        :: oc
+  integer        :: ic_rt
+  integer        :: oc_rt
+
+!! &group_others
+  integer        :: iparaway_ob
+  integer        :: iscf_order
+  integer        :: iswitch_orbital_mesh
+  integer        :: iflag_psicube
+  real(8)        :: lambda1_diis
+  real(8)        :: lambda2_diis
+  character(100) :: file_ini
+  integer        :: num_projection
+  integer        :: iwrite_projection_ob(200)
+  integer        :: iwrite_projection_k(200)
+  character(100) :: filename_pot
+  integer        :: iwrite_external
+  integer        :: iflag_dip2
+  integer        :: iflag_intelectron
+  integer        :: num_dip2
+  real(8)        :: dip2boundary(100)
+  real(8)        :: dip2center(100)
+  integer        :: iflag_fourier_omega
+  integer        :: num_fourier_omega
+  real(8)        :: fourier_omega(200)
+  integer        :: itotntime2
+  integer        :: iwdenoption
+  integer        :: iwdenstep
+  integer        :: iflag_estatic
 
 !! &atomic_coor
 !! &atomic_red_coor

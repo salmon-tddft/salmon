@@ -9,11 +9,6 @@
 &control
   sysname = 'C2H2'
 /
-&parallel
-  nproc_ob = 1
-  nproc_domain = 1,1,1
-  nproc_domain_s = 1,1,1
-/
 &system
   iperiodic = 0
   al = 16d0, 16d0, 16d0
@@ -37,7 +32,7 @@
   nt=4800
 /
 &emfield
-  ae_shape1 = 'esin2cos'
+  ae_shape1 = 'Ecos2'
   epdir_re1 = 0.d0,0.d0,1.d0
   rlaser_int1 = 1.d8
   omega1=9.26d0

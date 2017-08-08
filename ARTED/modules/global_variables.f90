@@ -33,7 +33,6 @@ Module Global_Variables
 !yabana
 
   integer :: iter_now,entrance_iter
-  character(10) :: entrance_option    !initial or reentrance
   real(8) :: Time_start,Time_now
 
 ! grid
@@ -133,6 +132,8 @@ Module Global_Variables
   character(256) :: file_ac_m            ! 943
   character(256) :: file_ac              ! 902
   character(256) :: file_ac_init         ! 902
+  character(256) :: file_k_data
+  character(256) :: file_eigen_data
   character(256) :: process_directory
 
 !  character(2) :: ext_field ! this variable is removed
@@ -209,7 +210,7 @@ Module Global_Variables
   character(30), parameter :: calc_mode_sc = 'singlecell'
   character(30), parameter :: calc_mode_ms = 'multiscale'
 
-  integer :: reentrance_switch = 0
+  integer :: restart_switch = 0
 
   logical :: need_backup      = .FALSE.
 
