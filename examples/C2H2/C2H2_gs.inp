@@ -21,9 +21,9 @@
   pseudo_file(1)='C_rps.dat'
   pseudo_file(2)='H_rps.dat'
   lmax_ps(1)=1
-  lmax_ps(2)=0
+  lmax_ps(2)=1
   lloc_ps(1)=1
-  lloc_ps(2)=0
+  lloc_ps(2)=1
 /
 &rgrid
   dl = 0.25d0, 0.25d0, 0.25d0
