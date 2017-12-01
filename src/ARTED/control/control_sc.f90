@@ -186,14 +186,14 @@ subroutine tddft_sc
     if (use_ehrenfest_md == 'y') then
 !$acc update self(zu_t)
       call Ion_Force_omp(Rion_update_rt,calc_mode_rt)
-      ! if (iter/10*10 == iter) then
+      if (iter/10*10 == iter) then
         call Total_Energy_omp(Rion_update_rt,calc_mode_rt)
-      ! end if
+      end if
     else
 !$acc update self(zu_t)
-      call Total_Energy_omp(Rion_update_rt,calc_mode_rt)
+      ! call Total_Energy_omp(Rion_update_rt,calc_mode_rt)
       if (iter/10*10 == iter) then
-        ! call Total_Energy_omp(Rion_update_rt,calc_mode_rt)
+        call Total_Energy_omp(Rion_update_rt,calc_mode_rt)
         call Ion_Force_omp(Rion_update_rt,calc_mode_rt)
       end if
     end if
@@ -206,7 +206,7 @@ subroutine tddft_sc
     E_tot(iter,:)=-(Ac_tot(iter+1,:)-Ac_tot(iter-1,:))/(2*dt)
 
     Eelemag=aLxyz*sum(E_tot(iter,:)**2)/(8.d0*Pi)
-    Eall=Eall+Eelemag
+    ! Eall=Eall+Eelemag
     do ia=1,NI
       force_ion(:,ia)=Zps(Kion(ia))*E_tot(iter,:)
     enddo
@@ -241,9 +241,14 @@ subroutine tddft_sc
       dRion(:,:,iter+1)=0.d0
       Tion=0.d0
     endif
-    Eall=Eall+Tion
+    ! Eall=Eall+Tion
     
-    Eall_t(iter) = Eall
+    Eall_t(iter) = Eall + Tion + Eelemag
+    if (0 < iter .and. mod(iter, 10) == 0) then
+      do i = 1, 9
+        Eall_t(iter-i) = Eall_t(iter-10)*(i*0.1) + Eall_t(iter)*(1.0-i*0.1) 
+      end do
+    end if
     Tion_t(iter) = Tion
     Temperature_ion_t(iter) = Temperature_ion
 
