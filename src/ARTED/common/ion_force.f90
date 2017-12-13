@@ -156,6 +156,8 @@ contains
     enddo
     enddo
 !$omp end parallel do
+    
+    deallocate(idx, idy, idz)
 
     !Force from Vlocal with wave-func gradient --
     ftmp_l_kl= 0.d0
