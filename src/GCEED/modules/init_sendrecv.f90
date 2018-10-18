@@ -41,12 +41,34 @@ real(8),allocatable :: rmatbox4_x_h(:,:,:),rmatbox4_y_h(:,:,:),rmatbox4_z_h(:,:,
 complex(8),allocatable :: cmatbox1_x_h(:,:,:),cmatbox1_y_h(:,:,:),cmatbox1_z_h(:,:,:)
 complex(8),allocatable :: cmatbox2_x_h(:,:,:),cmatbox2_y_h(:,:,:),cmatbox2_z_h(:,:,:)
 
+public  :: init_updown
+public  :: init_itype
+public  :: init_sendrecv_matrix
+private :: init_updown_detail
+
 CONTAINS
 
 !=======================================================================
 !=======================================================================
 
-SUBROUTINE init_updown
+subroutine init_updown
+  use salmon_parallel
+  use salmon_communication, only: comm_proc_null
+  implicit none
+
+  if (is_distributed_parallel()) then
+    call init_updown_detail
+  else
+    iup_array(:) = comm_proc_null
+    idw_array(:) = comm_proc_null
+    jup_array(:) = comm_proc_null
+    jdw_array(:) = comm_proc_null
+    kup_array(:) = comm_proc_null
+    kdw_array(:) = comm_proc_null
+  end if
+end subroutine
+
+SUBROUTINE init_updown_detail
 use inputoutput, only: iperiodic
 use salmon_parallel
 use salmon_communication, only: comm_proc_null
@@ -367,7 +389,7 @@ if(isequential==2)then
   end if
 end if
 
-END SUBROUTINE init_updown
+END SUBROUTINE init_updown_detail
 
 !=====================================================================
 subroutine init_itype
